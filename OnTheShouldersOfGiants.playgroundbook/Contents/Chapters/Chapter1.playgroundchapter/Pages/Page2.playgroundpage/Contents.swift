@@ -1,6 +1,5 @@
 /*:
-*Gravity - the force that attracts a body toward the center of the earth, or toward any other physical body having mass.*
- # The discovery of Gravity by Isaac Newton in 1687 was revolutionary to our understanding of the world and the physics behind it at the time.
+ Isaac Newton, an English mathematician and physicist, is considered the greatest scientist of all time. Among his many discoveries, the most important is probably his law of universal gravitation. In 1664, Newton figured out that gravity is the force that draws objects toward each other. It explained why things fall down and why the planets orbit around the Sun.
  ---
 */
 //#-hidden-code

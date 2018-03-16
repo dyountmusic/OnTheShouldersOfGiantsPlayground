@@ -12,9 +12,8 @@ public class ZenSandbox: UIView {
     public let gravityBehavior: UIGravityBehavior
     public let itemBehavior: UIDynamicItemBehavior
     
-    
     public init() {
-        colors = [#colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1), #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1), #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1), #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1), #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1), #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1), #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1), #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)]
+        colors = [#colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)]
         
         collisionBehavior = UICollisionBehavior(items: [])
         gravityBehavior = UIGravityBehavior(items: [])
@@ -27,8 +26,8 @@ public class ZenSandbox: UIView {
         
         super.init(frame: CGRect(x: 0, y: 0, width: 480, height: 320))
         
-        backgroundColor = .white
-        fillBackground()
+        backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+        //fillBackground()
         
         animator = UIDynamicAnimator(referenceView: self)
         collisionBehavior.translatesReferenceBoundsIntoBoundary = true
@@ -36,6 +35,10 @@ public class ZenSandbox: UIView {
         animator?.addBehavior(itemBehavior)
         animator?.addBehavior(collisionBehavior)
         
+        let treeView = UIImageView(image: UIImage(named: "treeColored.png"))
+        treeView.frame = CGRect(x: ((super.bounds.maxX/2)-250) , y: super.bounds.maxY + 50, width: 500, height: 500)
+        
+        self.addSubview(treeView)
         
         createMarbles()
     }
@@ -61,11 +64,6 @@ public class ZenSandbox: UIView {
         
         
         createMarbles()
-    }
-    
-    func createBase() {
-        let base = UIView()
-        
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -133,66 +131,16 @@ public class ZenSandbox: UIView {
             collisionBehavior.removeItem(marble)
             itemBehavior.removeItem(marble)
             
-            let marbleXOrigin = ((bounds.width - requiredWidth) / 1.5) + (CGFloat(index) * (marbleSize.width + CGFloat(marblePadding)))
-            marble.frame = CGRect(x: marbleXOrigin, y: bounds.midY, width: marbleSize.width, height: marbleSize.height)
+            //let marbleXOrigin = ((bounds.width - requiredWidth) / 1.5) + (CGFloat(index) * (marbleSize.width + CGFloat(marblePadding)))
+            marble.frame = CGRect(x: bounds.midX + 50, y: bounds.maxY + 135, width: marbleSize.width, height: marbleSize.height)
             
             collisionBehavior.addItem(marble)
             itemBehavior.addItem(marble)
             
-            switch index {
-            case 0:
-                // W
-                if let maskImage = UIImage(named: "W@3x.png") {
-                    let maskImageSized = imageWithImage(image: maskImage, scaledToSize: marbleSize)
-                    marble.mask = UIImageView(image: maskImageSized)
-                }
-            case 1:
-                // W
-                if let maskImage = UIImage(named: "W@3x.png") {
-                    let maskImageSized = imageWithImage(image: maskImage, scaledToSize: marbleSize)
-                    marble.mask = UIImageView(image: maskImageSized)
-                }
-            case 2:
-                // D
-                if let maskImage = UIImage(named: "D@3x.png") {
-                    let maskImageSized = imageWithImage(image: maskImage, scaledToSize: marbleSize)
-                    marble.mask = UIImageView(image: maskImageSized)
-                }
-            case 3:
-                // C
-                if let maskImage = UIImage(named: "C@3x.png") {
-                    let maskImageSized = imageWithImage(image: maskImage, scaledToSize: marbleSize)
-                    marble.mask = UIImageView(image: maskImageSized)
-                }
-            case 4:
-                // 2
-                if let maskImage = UIImage(named: "2@3x.png") {
-                    let maskImageSized = imageWithImage(image: maskImage, scaledToSize: marbleSize)
-                    marble.mask = UIImageView(image: maskImageSized)
-                }
-            case 5:
-                // 0
-                if let maskImage = UIImage(named: "0@3x.png") {
-                    let maskImageSized = imageWithImage(image: maskImage, scaledToSize: marbleSize)
-                    marble.mask = UIImageView(image: maskImageSized)
-                }
-            case 6:
-                // 1
-                if let maskImage = UIImage(named: "1@3x.png") {
-                    let maskImageSized = imageWithImage(image: maskImage, scaledToSize: marbleSize)
-                    marble.mask = UIImageView(image: maskImageSized)
-                }
-            case 7:
-                // 8
-                if let maskImage = UIImage(named: "8@3x.png") {
-                    let maskImageSized = imageWithImage(image: maskImage, scaledToSize: marbleSize)
-                    marble.mask = UIImageView(image: maskImageSized)
-                }
-            default:
-                // no mask
-                print()
+            if let maskImage = UIImage(named: "applemask.png") {
+                let maskImageSized = imageWithImage(image: maskImage, scaledToSize: marbleSize)
+                marble.mask = UIImageView(image: maskImageSized)
             }
-            
         }
     }
     
